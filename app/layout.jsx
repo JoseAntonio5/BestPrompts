@@ -5,7 +5,12 @@ import Provider from '@components/Provider';
 
 export const metadata = {
     title: 'BestPrompts',
-    descript: 'Discover and share lots of useful AI Prompts'
+    descript: 'Discover and share lots of useful AI Prompts',
+    icons: {
+        icon: [
+            '/favicon/favicon.ico',
+        ]
+    }
 }
 
 function RootLayout({ children }) {
