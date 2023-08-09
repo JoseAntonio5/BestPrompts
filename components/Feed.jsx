@@ -2,9 +2,11 @@
 
 import { useState, useEffect } from "react"
 import PromptCard from "./PromptCard";
+import Image from "next/image";
 
 function Feed() {
 
+  const [isLoading, setIsLoading] = useState(true);
   const [posts, setPosts] = useState([]);
   const [searchText, setSearchText] = useState('');
   const [searchTimeout, setSearchTimeout] = useState(null);
@@ -19,6 +21,7 @@ function Feed() {
     }
 
     fetchPosts();
+    setIsLoading(false);
   }, []);
 
   const filterPosts = (searchText) => {
@@ -66,6 +69,18 @@ function Feed() {
     )
   }
 
+  if(isLoading) {
+    return (
+        <Image 
+            src='/assets/icons/loader.svg'
+            alt="loading icon"
+            width={100}
+            height={100}
+            className="my-16"
+        />
+    )
+}
+
   return (
     <section className="feed">
       <form className="relative w-full flex-center">
@@ -92,4 +107,4 @@ function Feed() {
   )
 }
 
-export default Feed
+export default Feed;

@@ -15,6 +15,7 @@ function UpdatePrompt() {
         prompt: '',
         tag: ''
     });
+    
     useEffect(() => {
       const getPromptDetails = async() => {
         const response = await fetch(`/api/prompt/${promptId}`);

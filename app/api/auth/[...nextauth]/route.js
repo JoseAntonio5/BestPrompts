@@ -17,6 +17,7 @@ const handler = NextAuth({
             })
     
             session.user.id = sessionUser._id.toString();
+            session.user.favorite = sessionUser.favorite;
     
             return session
         },
@@ -32,7 +33,8 @@ const handler = NextAuth({
                     await User.create({
                         email: profile.email,
                         username: profile.name.replace(" ", "").toLowerCase(),
-                        image: profile.picture
+                        image: profile.picture,
+                        favorite: profile.favorite
                     })
                 }
     

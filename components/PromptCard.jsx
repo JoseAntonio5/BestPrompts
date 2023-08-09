@@ -3,21 +3,52 @@
 import { useState } from "react";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 function PromptCard({ post, handleTagClick, handleEdit, handleDelete }) {
 
   const { data: session } = useSession();
   const pathName = usePathname();
-  const router = useRouter();
   const [copy, setCopy] = useState('');
-
+  const [submitting, setSubmitting] = useState(false);
+  // const favoritedPosts = session?.user.favorite;
+  const [favorited, setFavorited] = useState(session?.user.favorite.includes(post._id));
+  
   const handleCopy = () => {
     setCopy(post.prompt);
     navigator.clipboard.writeText(post.prompt);
     setTimeout(() => {
       setCopy("");
     }, 3000)
+  }
+
+  const handleUpdateFavoritePost = async(e) => {
+    e.preventDefault();
+    setSubmitting(true);
+
+    if(!session?.user.id) {
+      return alert('Error. User ID was not found. Please try again.');
+    }
+
+    try {
+      const response = await fetch(`/api/users/${session?.user.id}`, {
+          method: "PATCH",
+          body: JSON.stringify({
+            postId: post._id,
+            email: session?.user.email,
+            username: session?.user.name,
+            image: session?.user.image
+          }),
+      });
+
+      if (response.ok) {
+        setFavorited(!favorited);
+      }
+    } catch (error) {
+        console.log(error);
+    } finally {
+        setSubmitting(false);
+    }
   }
 
   return (
@@ -37,7 +68,7 @@ function PromptCard({ post, handleTagClick, handleEdit, handleDelete }) {
           </div>
         </div>
         <div className="copy_btn" onClick={handleCopy}>
-          <Image 
+          <Image
             src={
               copy === post.prompt
               ? '/assets/icons/tick.svg'
@@ -50,12 +81,30 @@ function PromptCard({ post, handleTagClick, handleEdit, handleDelete }) {
         </div>
       </div>
       <p className="my-4 font-satoshi text-sm text-gray-700">{post.prompt}</p>
-      <p 
-        className="font-inter text-sm blue_gradient cursor-pointer"
-        onClick={() => handleTagClick && handleTagClick(post.tag)}
-      >
-        {post.tag}
-      </p>
+      <div className="w-full flex justify-between">
+        <p 
+          className="font-inter text-sm blue_gradient cursor-pointer"
+          onClick={() => handleTagClick && handleTagClick(post.tag)}
+        >
+          {post.tag}
+        </p>
+        {
+          session?.user.id && (
+            <Image 
+              src={
+                favorited ?
+                '/assets/icons/star-filled.svg' :
+                '/assets/icons/star-empty.svg'
+              }
+              width={20}
+              height={20}
+              alt='star icon'
+              className="cursor-pointer"
+              onClick={handleUpdateFavoritePost}
+            />
+          )
+        }
+      </div>
 
       {
         session?.user.id === post.creator._id && pathName === '/profile'
@@ -71,4 +120,4 @@ function PromptCard({ post, handleTagClick, handleEdit, handleDelete }) {
   )
 }
 
-export default PromptCard
+export default PromptCard;

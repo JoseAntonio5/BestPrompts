@@ -1,7 +1,7 @@
 import PromptCard from "./PromptCard";
 import Image from "next/image";
 
-function Profile({ name, image, desc, data, handleEdit, handleDelete }) {
+function Profile({ name, image, desc, data, favoritePosts, handleEdit, handleDelete }) {
   return (
     <section className="w-full">
       <h1 className="head_text text-left">
@@ -17,14 +17,26 @@ function Profile({ name, image, desc, data, handleEdit, handleDelete }) {
         />
         <p className="desc text-left ml-5">{desc}</p>
       </div>
+      <h1 className="head_text text-left">Your posts</h1>
       <div className="mt-10 prompt_layout border-t-2 border-slate-300">
         {
           data.map((post) => (
-            <PromptCard 
+            <PromptCard
               key={post._id}
               post={post}
               handleEdit={() => handleEdit && handleEdit(post)}
               handleDelete={() => handleDelete && handleDelete(post)}
+            />
+          ))
+        }
+      </div>
+      <h1 className="head_text text-left">Favorite Posts</h1>
+      <div className="mt-10 prompt_layout border-t-2 border-slate-300">
+        {
+          favoritePosts.map((post) => (
+            <PromptCard
+              key={post._id}
+              post={post}
             />
           ))
         }
