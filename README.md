@@ -14,8 +14,9 @@ BestPrompts is an app where you can discover and share AI Prompts with a communi
 - Create and share a new prompt
 - Edit a prompt that you created
 - Delete a prompt that you created
+- Save prompts as favorites
 
-## What I learned by building this project
+## What I learned by building this project 📖
 - How the NextJS App Folder Structure works
 - Client Components vs. Server Components
 - NextJS File-based Routing
