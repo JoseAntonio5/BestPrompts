@@ -37,7 +37,8 @@ function Nav() {
       <div className='sm:flex hidden'>
         {
           session?.user ? (
-            <div className='flex gap-3 md:gap-5'>
+            <div className='flex gap-3 md:gap-5 items-center'>
+              <Link href='/about' className='font-medium hover:underline'>About</Link>
               <Link href='/create-prompt' className='black_btn'>Create Post</Link>
               <button type='button' onClick={signOut} className='outline_btn'>Sign Out</button>
               <Link href='/profile'>
@@ -51,7 +52,8 @@ function Nav() {
               </Link>
             </div>
           ) : (
-            <>
+            <div className='flex gap-3 md:gap-5 items-center'>
+              <Link href='/about' className='font-medium hover:underline'>About</Link>
               {
                 providers && 
                   Object.values(providers).map((provider) => (
@@ -65,7 +67,7 @@ function Nav() {
                     </button>
                   ))
               }
-            </>
+            </div>
           )
         }
       </div>
@@ -94,6 +96,13 @@ function Nav() {
                       My Profile
                     </Link>
                     <Link
+                      href='/about'
+                      className='dropdown_link'
+                      onClick={() => setToggleDropdown(false)}
+                    >
+                      About
+                    </Link>
+                    <Link
                       href='/create-prompt'
                       className='dropdown_link'
                       onClick={() => setToggleDropdown(false)}
@@ -115,7 +124,8 @@ function Nav() {
               }
             </div>
           ) : (
-            <>
+            <div className='flex gap-3 md:gap-5 items-center'>
+              <Link href='/about' className='font-medium hover:underline'>About</Link>
               {
                 providers && 
                   Object.values(providers).map((provider) => (
@@ -129,7 +139,7 @@ function Nav() {
                     </button>
                   ))
               }
-            </>
+            </div>
           )
         }
       </div>
