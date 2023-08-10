@@ -2,6 +2,10 @@
 
 Discover and share lots of useful AI Prompts.
 
+### Live Project 🌐
+#### Check it by yourself:
+[https://best-prompts.vercel.app/](https://best-prompts.vercel.app/)
+
 ## About the project
 BestPrompts is an app where you can discover and share AI Prompts with a community.
 
