@@ -6,7 +6,7 @@ function About() {
       <h1 className='w-full max-w-full head_text text-left pb-4 border-b-2 border-slate-300'><span className='blue_gradient'>About</span></h1>
       <h4 className='mt-5 text-lg text-gray-600 sm:text-xl w-full max-w-full'>Welcome to BestPromps – the ultimate destination for unleashing the power of AI tools through collaborative creativity!</h4>
       <p className='text-left w-full max-w-full my-8'>
-        Welcome to BestPromps, Our website is all about helping you and others share, find, and use lots of different ideas that make AI programs even better. If you're interested in what computers can do, BestPromps is the right spot for you!
+        Welcome to BestPromps, our website is all about helping you and others share, find, and use lots of different ideas that make AI programs even better. If you're interested in what computers can do, BestPromps is the right spot for you!
       </p>
 
       <h3 className='text-4xl font-extrabold'>With BestPropts you can:</h3>
