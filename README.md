@@ -34,7 +34,16 @@ BestPrompts is an app where you can discover and share AI Prompts with a communi
 - MongoDB
 - NextAuth
 
-### Screenshots 
+### Screenshots
+
+> BestPrompts Homepage
+![](./public/screenshots/1.png)
+> Create a new prompt
+![](./public/screenshots/2.png)
+> About page
+![](./public/screenshots/3.png)
+> User personal Profile
+![](./public/screenshots/4.png)
 
 #### Author
 José Antônio ©️ 2023
